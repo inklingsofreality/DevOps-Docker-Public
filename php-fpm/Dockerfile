@@ -1,4 +1,4 @@
-FROM php:7.1.14-fpm
+FROM php:7.1-fpm
 
 MAINTAINER Aaron Picht <apicht@users.noreply.github.com>
 
@@ -7,7 +7,8 @@ MAINTAINER Aaron Picht <apicht@users.noreply.github.com>
 #
 # Installing dependencies and tools
 
-RUN apt-get update && \
+RUN rm /etc/apt/preferences.d/no-debian-php && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
         curl \
         libicu-dev \
@@ -15,7 +16,7 @@ RUN apt-get update && \
         libz-dev \
         libpq-dev \
         libjpeg-dev \
-        libpng12-dev \
+        libpng-dev \
         libfreetype6-dev \
         libssl-dev \
         libxml2-dev \
