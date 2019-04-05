@@ -18,6 +18,8 @@ RUN apt-get update && \
         libpng12-dev \
         libfreetype6-dev \
         libssl-dev \
+        libxml2-dev \
+        php-soap \
         libmcrypt-dev && \
     apt-get clean && apt-get autoclean && apt-get --purge -y autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -29,7 +31,8 @@ RUN docker-php-ext-install mcrypt && \
     docker-php-ext-install pdo_pgsql && \
     docker-php-ext-install opcache && \
     docker-php-ext-install zip && \
-    docker-php-ext-install intl
+    docker-php-ext-install intl && \
+    docker-php-ext-install soap
 
 # Install gd extension
 RUN docker-php-ext-configure gd \
