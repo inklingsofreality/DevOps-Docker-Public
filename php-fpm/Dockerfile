@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.2-fpm
 
 MAINTAINER Aaron Picht <apicht@users.noreply.github.com>
 
@@ -22,11 +22,12 @@ RUN rm /etc/apt/preferences.d/no-debian-php && \
         libxml2-dev \
         php-soap \
         libmcrypt-dev && \
+        pecl install mcrypt-1.0.2 && \
     apt-get clean && apt-get autoclean && apt-get --purge -y autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # Install basic extensions
-RUN docker-php-ext-install mcrypt && \
+RUN docker-php-ext-enable mcrypt && \
     docker-php-ext-install pdo_mysql && \
     docker-php-ext-install mysqli && \
     docker-php-ext-install pdo_pgsql && \
